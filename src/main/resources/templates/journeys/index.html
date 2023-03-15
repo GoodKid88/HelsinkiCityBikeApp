@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en"xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Index</title>
+</head>
+<body>
+<div th:each="journey : ${journeys}">
+    <a th:href="@{/journeys/{id}(id=${journey.getId()})}"
+       th:text="${'Journey ' + journey.getId() + ' Departure Station: ' + journey.getDepartureStation()
++ ' Return Station: ' + journey.getReturnStation() + ' distance(km): ' + journey.getDistance()
++ ' duration(min): ' + journey.getDuration()}">journeys</a>
+</div>
+
+<hr/>
+
+<a href="/journeys/new">Add new journey</a>
+</body>
+</html>

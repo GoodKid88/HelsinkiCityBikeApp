@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Add station</title>
+</head>
+<body>
+<form th:method="POST" th:action="@{/journeys}" th:object="${journey}">
+    <label for="departureStation">Enter Departure Station: </label>
+    <input type="text" th:field="*{departureStation}" id="departureStation"/>
+    <div style="color:red" th:if="${#fields.hasErrors('departureStation')}" th:errors="*{departureStation}">Departure Station Error</div>
+    <br/>
+    <label for="returnStation">Enter Return Station: </label>
+    <input type="text" th:field="*{returnStation}" id="returnStation"/>
+    <div style="color:red" th:if="${#fields.hasErrors('returnStation')}" th:errors="*{returnStation}">Return Station Error</div>
+    <br/>
+    <label for="distance">Enter distance: </label>
+    <input type="text" th:field="*{distance}" id="distance"/>
+    <div style="color:red" th:if="${#fields.hasErrors('distance')}" th:errors="*{distance}">Distance Error</div>
+    <br/>
+    <label for="duration">Enter duration: </label>
+    <input type="text" th:field="*{duration}" id="duration"/>
+    <div style="color:red" th:if="${#fields.hasErrors('duration')}" th:errors="*{duration}">Duration Error</div>
+    <br/>
+    <br/>
+    <input type="submit" value="Create!"/>
+</form>
+
+
+</body>
+</html>
