@@ -7,12 +7,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 @RequestMapping("/journeys")
 public class JourneyController {
-
     private final JourneyService journeyService;
 
     @Autowired
@@ -20,35 +22,28 @@ public class JourneyController {
         this.journeyService = journeyService;
     }
 
-    @GetMapping()
-    public String index(Model model) {
-        model.addAttribute("journeys", journeyService.findAll());
-        return "journeys/index";
+    @GetMapping("/")
+    public String homePage() {
+        return "/index";
     }
 
-    @GetMapping("/{id}")
-    public String show(@PathVariable("id") int id, Model model) {
-        model.addAttribute("journey", journeyService.findOne(id));
-        return "journeys/show";
+    @GetMapping()
+    public String viewAllJourneys(Model model) {
+        model.addAttribute("journeys", journeyService.findAll());
+        return "/journeys";
     }
 
     @GetMapping("/new")
     public String newJourney(@ModelAttribute("journey") Journey journey) {
-        return "journeys/new";
+        return "/new";
     }
 
     @PostMapping()
     public String create(@ModelAttribute("journey") @Valid Journey journey,
                          BindingResult bindingResult) {
         if (bindingResult.hasErrors())
-            return "journeys/new";
+            return "/new";
         journeyService.save(journey);
-        return "redirect:/journeys";
-    }
-
-    @DeleteMapping("/{id}")
-    public String delete(@PathVariable("id") int id) {
-        journeyService.delete(id);
         return "redirect:/journeys";
     }
 }
