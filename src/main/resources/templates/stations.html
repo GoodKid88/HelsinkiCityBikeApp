@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Stations</title>
+</head>
+<body>
+
+<div th:each="station : ${stations}">
+    <a th:href="@{/stations/{id}(id=${station.getFid()})}"
+       th:text="${'Station ' + station.getStationNameEn() + ' Station Adress: ' + station.getAddressFI()}">journeys</a>
+</div>
+</body>
+</html>

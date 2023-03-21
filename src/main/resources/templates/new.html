@@ -5,14 +5,26 @@
     <title>Add station</title>
 </head>
 <body>
-<form th:method="POST" th:action="@{/journeys}" th:object="${journey}">
+<form th:method="POST" th:action="@{/templates/journeys}" th:object="${journey}">
+    <label for="departure">Enter departure: </label>
+    <input type="text" th:field="*{duration}" id="departure"/>
+    <div style="color:red" th:if="${#fields.hasErrors('departure')}" th:errors="*{departure}">Departure Error</div>
+    <br/>
+    <label for="returnDate">Enter return: </label>
+    <input type="text" th:field="*{returnDate}" id="returnDate"/>
+    <div style="color:red" th:if="${#fields.hasErrors('returnDate')}" th:errors="*{returnDate}">Return Error</div>
+    <br/>
     <label for="departureStation">Enter Departure Station: </label>
     <input type="text" th:field="*{departureStation}" id="departureStation"/>
-    <div style="color:red" th:if="${#fields.hasErrors('departureStation')}" th:errors="*{departureStation}">Departure Station Error</div>
+    <div style="color:red" th:if="${#fields.hasErrors('departureStation')}" th:errors="*{departureStation}">Departure
+        Station Error
+    </div>
     <br/>
     <label for="returnStation">Enter Return Station: </label>
     <input type="text" th:field="*{returnStation}" id="returnStation"/>
-    <div style="color:red" th:if="${#fields.hasErrors('returnStation')}" th:errors="*{returnStation}">Return Station Error</div>
+    <div style="color:red" th:if="${#fields.hasErrors('returnStation')}" th:errors="*{returnStation}">Return Station
+        Error
+    </div>
     <br/>
     <label for="distance">Enter distance: </label>
     <input type="text" th:field="*{distance}" id="distance"/>
