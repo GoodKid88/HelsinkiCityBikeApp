@@ -9,9 +9,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-@RequestMapping("stations")
+@RequestMapping("/stations")
 public class StationController {
-
     private final StationService stationService;
 
     @Autowired
@@ -27,13 +26,8 @@ public class StationController {
 
     @GetMapping("/{id}")
     public String show(@PathVariable("id") int id, Model model) {
-        model.addAttribute("journey", stationService.findOne(id));
+        stationService.setAdditionalInfoToStation(stationService.findOne(id));
+        model.addAttribute("station", stationService.findOne(id));
         return "/show";
     }
-
-//    @PostMapping("/uploadStations")
-//    public String uploadStationsFromCSV(){
-//        stationService.uploadStations("https://opendata.arcgis.com/datasets/726277c507ef4914b0aec3cbcfcbfafc_0.csv");
-//        return "Upload successful";
-//    }
 }

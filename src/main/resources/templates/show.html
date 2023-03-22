@@ -1,13 +1,14 @@
-<!--<!DOCTYPE html>-->
-<!--<html lang="en" xmlns:th="http://www.thymeleaf.org">-->
-<!--<head>-->
-<!--    <meta charset="UTF-8">-->
-<!--    <title>Show</title>-->
-<!--</head>-->
-<!--<body>-->
-<!--<p th:text="${'Journey ' + journey.getId() + ' Departure Station: ' + journey.getDepartureStation()-->
-<!--+ ' Return Station: ' + journey.getReturnStation() + ' distance(km): ' + journey.getDistance()-->
-<!--+ ' duration(min): ' + journey.getDuration()}">VALUE</p>-->
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Show</title>
+</head>
+<body>
 
-<!--</body>-->
-<!--</html>-->
+<p th:text="${'Station ' + station.getStationNameEn() + ' Station Adress: ' + station.getAddressFI() +
+ '. Total number of journeys starting from the station: ' + station.getStartingFromStation() + '. Total number of journeys ending at the station: ' + station.getEndingFromStation()
+ + ' The average distance of a journey starting from the station: ' + station.getAvgDistanceFromStation() + ' The average distance of a journey ending to the station: ' + station.getAvgDistanceToStation()}">VALUE</p>
+
+</body>
+</html>

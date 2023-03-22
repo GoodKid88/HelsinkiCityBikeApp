@@ -4,11 +4,16 @@ import com.example.HelsinkiCityBikeApp.model.Journey;
 import com.example.HelsinkiCityBikeApp.model.Station;
 import com.example.HelsinkiCityBikeApp.repositories.JourneyRepository;
 import com.example.HelsinkiCityBikeApp.repositories.StationRepository;
+import com.univocity.parsers.common.record.Record;
+import com.univocity.parsers.csv.CsvParser;
+import com.univocity.parsers.csv.CsvParserSettings;
 import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVParser;
 import org.apache.commons.csv.CSVRecord;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -86,6 +91,14 @@ public class CSVService {
         return inputStream;
     }
 
+
+//    public void setAdditionalInfoToStation(Station station){
+//        station.setStartingFromStation(journeyRepository.countAllByDepartureStation(station.getStationNameFI()));
+//        station.setEndingFromStation(journeyRepository.countAllByReturnStation(station.getStationNameFI()));
+//        station.setAvgDistanceFromStation(journeyRepository.countAllDistanceFromStation(station.getStationNameFI()));
+//        station.setAvgDistanceToStation(journeyRepository.countAllDistanceToStation(station.getStationNameFI()));
+//    }
+
     public String uploadStations() {
         inputStream = openInputStream("https://opendata.arcgis.com/datasets/726277c507ef4914b0aec3cbcfcbfafc_0.csv");
 
@@ -112,6 +125,10 @@ public class CSVService {
                     station.setCapacity(Integer.parseInt(record.get("Kapasiteet")));
                     station.setX(Double.parseDouble(record.get("x")));
                     station.setY(Double.parseDouble(record.get("y")));
+//                    station.setStartingFromStation(journeyRepository.countAllByDepartureStation(station.getStationNameFI()));
+//                    station.setEndingFromStation(journeyRepository.countAllByReturnStation(station.getStationNameFI()));
+//                    station.setAvgDistanceFromStation(journeyRepository.countAllDistanceFromStation(station.getStationNameFI()));
+//                    station.setAvgDistanceToStation(journeyRepository.countAllDistanceToStation(station.getStationNameFI()));
                     stationList.add(station);
                 } catch (Exception e) {
                     e.printStackTrace();
@@ -124,4 +141,40 @@ public class CSVService {
             throw new RuntimeException(e);
         }
     }
+
+//    public String uploadJourneysFromCVS(@RequestParam("file") MultipartFile file) throws Exception {
+//        List<Journey> journeyList = new ArrayList<>();
+//        InputStream inputStream = file.getInputStream();
+//        CsvParserSettings settings = new CsvParserSettings();
+//        settings.setHeaderExtractionEnabled(true);
+//        CsvParser parser = new CsvParser(settings);
+//        List<Record> parseAllRecords = parser.parseAllRecords(inputStream);
+//        parseAllRecords.forEach(record -> {
+//            if (record.getString("Covered distance (m)") == null) {
+//                System.out.println("Distance is empty " + record);
+//            } else if (Double.parseDouble(record.getString("Covered distance (m)")) % 1.0 > 0) {
+//                System.out.println("Distance is less than 10 m " + record);
+//            } else if (Integer.parseInt(record.getString("Covered distance (m)")) < 10 ||
+//                    Integer.parseInt(record.getString("Duration (sec.)")) < 10) {
+//                System.out.println("Covered distance is less than 10 m or Duration is shorter than 10 sec");
+//            } else {
+//                try {
+//                    Journey journey = new Journey();
+//                    journey.setDeparture(LocalDateTime.parse(record.getString("Departure")));
+//                    journey.setReturnDate(LocalDateTime.parse(record.getString("Return")));
+//                    journey.setDepartureStationId(Integer.parseInt(record.getString("Departure station id")));
+//                    journey.setDepartureStation(record.getString("Departure station name"));
+//                    journey.setReturnStationId(Integer.parseInt(record.getString("Return station id")));
+//                    journey.setReturnStation(record.getString("Return station name"));
+//                    journey.setDistance(Double.parseDouble(record.getString("Covered distance (m)")));
+//                    journey.setDuration(Double.parseDouble(record.getString("Duration (sec.)")));
+//                    journeyList.add(journey);
+//                } catch (Exception e) {
+//                    e.printStackTrace();
+//                }
+//            }
+//        });
+//        journeyRepository.saveAll(journeyList);
+//        return "Journeys upload Successful!";
+//    }
 }

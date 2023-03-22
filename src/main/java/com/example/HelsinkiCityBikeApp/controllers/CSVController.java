@@ -1,14 +1,18 @@
 package com.example.HelsinkiCityBikeApp.controllers;
 
+
 import com.example.HelsinkiCityBikeApp.services.CSVService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
+@RequestMapping("/index")
 public class CSVController {
 
     private final CSVService csvService;
+
 
     @Autowired
     public CSVController(CSVService csvService) {
@@ -18,10 +22,48 @@ public class CSVController {
 
     @PostMapping("/upload")
     public String uploadJourneys() {
-        csvService.uploadJourneys();
-//        csvService.uploadStations();
+         csvService.uploadJourneys();
+         csvService.uploadStations();
         return "/index";
     }
+
+
+//    @PostMapping("/upload")
+//    public String uploadJourneysFromCVS(@RequestParam("file") MultipartFile file) throws Exception {
+//        List<Journey> journeyList = new ArrayList<>();
+//        InputStream inputStream = file.getInputStream();
+//        CsvParserSettings settings = new CsvParserSettings();
+//        settings.setHeaderExtractionEnabled(true);
+//        CsvParser parser = new CsvParser(settings);
+//        List<Record> parseAllRecords = parser.parseAllRecords(inputStream);
+//        parseAllRecords.forEach(record -> {
+//            if (record.getString("Covered distance (m)") == null) {
+//                System.out.println("Distance is empty " + record);
+//            } else if (Double.parseDouble(record.getString("Covered distance (m)")) % 1.0 > 0) {
+//                System.out.println("Distance is less than 10 m " + record);
+//            } else if (Integer.parseInt(record.getString("Covered distance (m)")) < 10 ||
+//                    Integer.parseInt(record.getString("Duration (sec.)")) < 10) {
+//                System.out.println("Covered distance is less than 10 m or Duration is shorter than 10 sec");
+//            } else {
+//                try {
+//                    Journey journey = new Journey();
+//                    journey.setDeparture(LocalDateTime.parse(record.getString("Departure")));
+//                    journey.setReturnDate(LocalDateTime.parse(record.getString("Return")));
+//                    journey.setDepartureStationId(Integer.parseInt(record.getString("Departure station id")));
+//                    journey.setDepartureStation(record.getString("Departure station name"));
+//                    journey.setReturnStationId(Integer.parseInt(record.getString("Return station id")));
+//                    journey.setReturnStation(record.getString("Return station name"));
+//                    journey.setDistance(Double.parseDouble(record.getString("Covered distance (m)")));
+//                    journey.setDuration(Double.parseDouble(record.getString("Duration (sec.)")));
+//                    journeyList.add(journey);
+//                } catch (Exception e) {
+//                    e.printStackTrace();
+//                }
+//            }
+//        });
+//        journeyRepository.saveAll(journeyList);
+//        return "Journeys upload Successful!";
+//    }
 }
 //        List<Journey> journeyList = new ArrayList<>();
 //        InputStream inputStream = file.getInputStream();

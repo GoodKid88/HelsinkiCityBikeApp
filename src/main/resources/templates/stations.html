@@ -8,7 +8,7 @@
 
 <div th:each="station : ${stations}">
     <a th:href="@{/stations/{id}(id=${station.getFid()})}"
-       th:text="${'Station ' + station.getStationNameEn() + ' Station Adress: ' + station.getAddressFI()}">journeys</a>
+       th:text="${'Station ' + station.getStationNameEn() + ' Station Adress: ' + station.getAddressFI()}">Stations</a>
 </div>
 </body>
 </html>

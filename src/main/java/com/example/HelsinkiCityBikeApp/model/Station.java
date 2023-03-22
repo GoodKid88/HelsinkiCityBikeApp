@@ -5,8 +5,11 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Entity
-@Table(name = "stations")
+@Table(name = "station")
 public class Station {
     @Id
     @Column(name = "fid")
@@ -36,6 +39,16 @@ public class Station {
     private double x;
     @Column(name = "coordinate_y")
     private double y;
+
+    private int startingFromStation;
+    private int endingFromStation;
+    private double avgDistanceFromStation;
+    private double avgDistanceToStation;
+
+    private String top5returnStations;
+    private String top5startStations;
+
+
 
     public Station() {
     }
@@ -161,5 +174,37 @@ public class Station {
 
     public void setY(double y) {
         this.y = y;
+    }
+
+    public int getStartingFromStation() {
+        return startingFromStation;
+    }
+
+    public void setStartingFromStation(int startingFromStation) {
+        this.startingFromStation = startingFromStation;
+    }
+
+    public int getEndingFromStation() {
+        return endingFromStation;
+    }
+
+    public void setEndingFromStation(int endingFromStation) {
+        this.endingFromStation = endingFromStation;
+    }
+
+    public double getAvgDistanceFromStation() {
+        return avgDistanceFromStation;
+    }
+
+    public void setAvgDistanceFromStation(double avgDistanceFromStation) {
+        this.avgDistanceFromStation = avgDistanceFromStation;
+    }
+
+    public double getAvgDistanceToStation() {
+        return avgDistanceToStation;
+    }
+
+    public void setAvgDistanceToStation(double avgDistanceToStation) {
+        this.avgDistanceToStation = avgDistanceToStation;
     }
 }

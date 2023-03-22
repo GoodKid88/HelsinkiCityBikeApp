@@ -10,7 +10,7 @@
     <a th:href="@{/journeys/{id}(id=${journey.getId()})}"
        th:text="${'Journey ' + journey.getId() + ' Departure Station: ' + journey.getDepartureStation()
 + ' Return Station: ' + journey.getReturnStation() + ' distance(km): ' + journey.convertToKm(journey.getDistance())
-+ ' duration(min): ' + journey.convertToMinutes(journey.getDuration())}">journeys</a>
++ ' duration(min): ' + journey.convertToMinutes(journey.getDuration())}">Journeys</a>
 </div>
 
 <hr/>
