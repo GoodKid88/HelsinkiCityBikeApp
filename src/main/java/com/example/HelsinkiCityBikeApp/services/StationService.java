@@ -23,14 +23,13 @@ public class StationService {
         this.journeyRepository = journeyRepository;
     }
 
-    public void setAdditionalInfoToStation(Station station){
+    public void setAdditionalInfoToStation(Station station) {
         station.setStartingFromStation(journeyRepository.countAllByDepartureStation(station.getStationNameFI()));
         station.setEndingFromStation(journeyRepository.countAllByReturnStation(station.getStationNameFI()));
-
-        station.setAvgDistanceFromStation(journeyRepository.countAllDistanceFromStation(station.getStationNameFI())/station.getStartingFromStation()*0.001);
-        station.setAvgDistanceToStation(journeyRepository.countAllDistanceToStation(station.getStationNameFI())/station.getEndingFromStation()*0.001);
-
-
+        station.setTop5returnStations(journeyRepository.findByReturnStationOrderByCountLimit5(station.getStationNameFI()).toString());
+        station.setTop5startStations(journeyRepository.findByDepartureStationOrderByCountLimit5(station.getStationNameFI()).toString());
+        station.setAvgDistanceFromStation(journeyRepository.countAllDistanceFromStation(station.getStationNameFI()) / station.getStartingFromStation() * 0.001);
+        station.setAvgDistanceToStation(journeyRepository.countAllDistanceToStation(station.getStationNameFI()) / station.getEndingFromStation() * 0.001);
     }
 
     public Station findOne(int id) {

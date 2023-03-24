@@ -6,9 +6,14 @@
 </head>
 <body>
 
-<p th:text="${'Station ' + station.getStationNameEn() + ' Station Adress: ' + station.getAddressFI() +
- '. Total number of journeys starting from the station: ' + station.getStartingFromStation() + '. Total number of journeys ending at the station: ' + station.getEndingFromStation()
- + ' The average distance of a journey starting from the station: ' + station.getAvgDistanceFromStation() + ' The average distance of a journey ending to the station: ' + station.getAvgDistanceToStation()}">VALUE</p>
+<p th:text="${'Station: ' + station.getStationNameEn() + ', Station Adress: ' + station.getAddressFI()}"/>
+<p th:text="${'Total number of journeys starting from the station: ' + station.getStartingFromStation()}"/>
+<p th:text="${'Total number of journeys ending at the station: ' + station.getEndingFromStation()}"/>
+<p th:text="${'The average distance of a journey starting from the station: ' + station.getAvgDistanceFromStation() + '(km)'}"/>
+<p th:text="${'The average distance of a journey ending to the station: ' + station.getAvgDistanceToStation() + '(km)'}"/>
+<p th:text="${'Top 5 most popular departure stations for journeys ending at the station: ' + station.getTop5returnStations()}"/>
+<p th:text="${'Top 5 most popular return stations for journeys starting from the station' + station.getTop5startStations()}"/>
+
 
 </body>
 </html>

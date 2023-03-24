@@ -5,9 +5,6 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
-import java.util.ArrayList;
-import java.util.List;
-
 @Entity
 @Table(name = "station")
 public class Station {
@@ -15,7 +12,7 @@ public class Station {
     @Column(name = "fid")
     private int fid;
     @Column(name = "station_id")
-    private String stationId;
+    private int stationId;
     @Column(name = "station_name_fi")
     private String stationNameFI;
     @Column(name = "station_name_sw")
@@ -48,12 +45,26 @@ public class Station {
     private String top5returnStations;
     private String top5startStations;
 
+    public String getTop5returnStations() {
+        return top5returnStations;
+    }
 
+    public void setTop5returnStations(String top5returnStations) {
+        this.top5returnStations = top5returnStations;
+    }
+
+    public String getTop5startStations() {
+        return top5startStations;
+    }
+
+    public void setTop5startStations(String top5startStations) {
+        this.top5startStations = top5startStations;
+    }
 
     public Station() {
     }
 
-    public Station(int fid, String stationId, String stationNameFI,
+    public Station(int fid, int stationId, String stationNameFI,
                    String stationNameSW, String stationNameEn, String addressFI,
                    String addressSW, String cityFI, String citySW, String operator,
                    int capacity, double x, double y) {
@@ -80,11 +91,11 @@ public class Station {
         this.fid = fid;
     }
 
-    public String getStationId() {
+    public int getStationId() {
         return stationId;
     }
 
-    public void setStationId(String stationId) {
+    public void setStationId(int stationId) {
         this.stationId = stationId;
     }
 
@@ -207,4 +218,24 @@ public class Station {
     public void setAvgDistanceToStation(double avgDistanceToStation) {
         this.avgDistanceToStation = avgDistanceToStation;
     }
+
+//    public double getAvgDistanceFromStationString() {
+//        return avgDistanceFromStationString;
+//    }
+//
+//    public void setAvgDistanceFromStationString(double avgDistanceFromStationString) {
+//        this.avgDistanceFromStationString = avgDistanceFromStationString;
+//    }
+//
+//    public double getAvgDistanceToStationString() {
+//        return avgDistanceToStationString;
+//    }
+//
+//    public void setAvgDistanceToStationString(double avgDistanceToStationString) {
+//        this.avgDistanceToStationString = avgDistanceToStationString;
+//    }
+//
+//    public String formattedDistance(int distance) {
+//        return String.format("%.2f", distance);
+//    }
 }

@@ -22,10 +22,10 @@ public class JourneyController {
         this.journeyService = journeyService;
     }
 
-    @GetMapping("/")
-    public String homePage() {
-        return "/index";
-    }
+//    @GetMapping("/")
+//    public String homePage() {
+//        return "/index";
+//    }
 
     @GetMapping()
     public String viewAllJourneys(Model model) {

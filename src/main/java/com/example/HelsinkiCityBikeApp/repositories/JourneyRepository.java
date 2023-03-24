@@ -19,4 +19,7 @@ int countAllByReturnStation(String station);
 
     @Query(value = "select (b.departureStation) from Journey b where b.returnStation=:station group by b.departureStation order by count(*) limit 5")
     List<String> findByReturnStationOrderByCountLimit5(String station);
+
+    @Query(value = "select (b.returnStation) from Journey b where b.departureStation=:station group by b.returnStation order by count(*) limit 5")
+    List<String> findByDepartureStationOrderByCountLimit5(String station);
 }

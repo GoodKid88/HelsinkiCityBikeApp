@@ -3,11 +3,13 @@ package com.example.HelsinkiCityBikeApp.controllers;
 
 import com.example.HelsinkiCityBikeApp.services.CSVService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-@RestController
+@Controller
 @RequestMapping("/index")
 public class CSVController {
 
@@ -20,11 +22,16 @@ public class CSVController {
     }
 
 
-    @PostMapping("/upload")
+    @GetMapping()
+    public String homePage() {
+        return "/index";
+    }
+
+    @GetMapping("/upload")
     public String uploadJourneys() {
          csvService.uploadJourneys();
          csvService.uploadStations();
-        return "/index";
+        return "redirect:/index";
     }
 
 

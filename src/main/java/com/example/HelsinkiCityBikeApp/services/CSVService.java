@@ -91,14 +91,6 @@ public class CSVService {
         return inputStream;
     }
 
-
-//    public void setAdditionalInfoToStation(Station station){
-//        station.setStartingFromStation(journeyRepository.countAllByDepartureStation(station.getStationNameFI()));
-//        station.setEndingFromStation(journeyRepository.countAllByReturnStation(station.getStationNameFI()));
-//        station.setAvgDistanceFromStation(journeyRepository.countAllDistanceFromStation(station.getStationNameFI()));
-//        station.setAvgDistanceToStation(journeyRepository.countAllDistanceToStation(station.getStationNameFI()));
-//    }
-
     public String uploadStations() {
         inputStream = openInputStream("https://opendata.arcgis.com/datasets/726277c507ef4914b0aec3cbcfcbfafc_0.csv");
 
@@ -113,7 +105,7 @@ public class CSVService {
                 try {
                     Station station = new Station();
                     station.setFid(Integer.parseInt(record.get("\uFEFFFID")));
-                    station.setStationId(record.get("ID"));
+                    station.setStationId(Integer.parseInt(record.get("ID")));
                     station.setStationNameFI(record.get("Nimi"));
                     station.setStationNameSW(record.get("Nimi"));
                     station.setStationNameEn(record.get("Name"));
