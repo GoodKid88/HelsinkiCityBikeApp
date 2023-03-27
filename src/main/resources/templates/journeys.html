@@ -1,20 +1,77 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
-    <title>Journeys</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Figtree&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
+    <link href="/css/styles.css" rel="stylesheet">
+    <link rel="icon" href="/images/CityBikes_logo.svg">
+    <title>Helsinki City Bikes | Journeys</title>
 </head>
 <body>
-
-<div th:each="journey : ${journeys}">
-    <a th:href="@{/journeys/{id}(id=${journey.getId()})}"
-       th:text="${'Journey ' + journey.getId() + ' Departure Station: ' + journey.getDepartureStation()
-+ ' Return Station: ' + journey.getReturnStation() + ' distance(km): ' + journey.convertToKm(journey.getDistance())
-+ ' duration(min): ' + journey.convertToMinutes(journey.getDuration())}">Journeys</a>
+<div th:replace="~{header :: header}"></div>
+<div class="container">
+    <div class="my-3">
+        <h1 class="text-center">Journeys</h1>
+        <table class="table">
+            <thead>
+            <th scope="col">Departure station</th>
+            <th scope="col">Return station</th>
+            <th scope="col">Distance (km)</th>
+            <th scope="col">Duration (min)</th>
+            </thead>
+            <tbody>
+            <tr th:each="journey : ${journeys}">
+                <td>
+                    <a th:text="${journey.getDepartureStation()}"
+                       th:href="@{/stations/show/{id}(id=${journey.getDepartureStationId()})}">Departure station
+                    </a>
+                </td>
+                <td>
+                    <a th:text="${journey.getReturnStation()}"
+                       th:href="@{/stations/show/{id}(id=${journey.getReturnStationId()})}">Return station
+                    </a>
+                </td>
+                <td th:text="${journey.convertToKm(journey.getDistance())}">Distance (km)</td>
+                <td th:text="${journey.convertToMinutes(journey.getDuration())}">Duration (min)</td>
+            </tr>
+            </tbody>
+        </table>
+        <hr><a href="/journeys/new">Add new journey</a>
+        <div th:if="${totalPages > 1}">
+            <div class="row col-sm-10 mx-auto">
+                <div  class="col-sm-2">
+                    <span>Total Journeys:</span>
+                    <span th:text="${#numbers.formatInteger(totalItems,3,'COMMA')}">[[${totalItems}]]</span>
+                </div>
+                <div class="col-sm-1">
+                    <a th:if="${currentPage > 1}" th:href="@{'/journeys/'}"> < < </a>
+                </div>
+                <div class="col-sm-1">
+                    <a th:if="${currentPage > 1}" th:href="@{'/journeys/' + ${currentPage - 1}}">Previous</a>
+                </div>
+                <div class="col-sm-4 text-center">
+                    <span th:each="i: ${#numbers.sequence(currentPage > 2 ? currentPage - 2 : 1,
+                     currentPage + 2 < totalPages ? currentPage + 2 : totalPages)}">
+                      <a th:if="${currentPage != i}" th:href="@{'/journeys/' + ${i}}">[[${i}]]</a>
+                      <span th:unless="${currentPage != i}">[[${i}]]</span> &nbsp; &nbsp;
+                    </span>
+                </div>
+                <div class="col-sm-1">
+                    <a th:if="${currentPage < totalPages}" th:href="@{'/journeys/' + ${currentPage + 1}}">Next</a>
+                    <span th:unless="${currentPage < totalPages}">Next</span>
+                </div>
+                <div class="col-sm-1">
+                    <a th:if="${currentPage < totalPages}" th:href="@{'/journeys/' + ${totalPages}}"> > > </a>
+                    <span th:unless="${currentPage < totalPages}">Last</span>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
-
-<hr/>
-
-<a href="/journeys/new">Add new journey</a>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
 </body>
 </html>

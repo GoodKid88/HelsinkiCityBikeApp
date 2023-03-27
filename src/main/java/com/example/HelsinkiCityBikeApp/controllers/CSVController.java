@@ -29,8 +29,9 @@ public class CSVController {
 
     @GetMapping("/upload")
     public String uploadJourneys() {
-         csvService.uploadJourneys();
-         csvService.uploadStations();
+        csvService.upload();
+       //  csvService.uploadJourneys();
+        // csvService.uploadStations();
         return "redirect:/index";
     }
 

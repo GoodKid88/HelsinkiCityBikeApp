@@ -1,6 +1,8 @@
 package com.example.HelsinkiCityBikeApp.repositories;
 
 import com.example.HelsinkiCityBikeApp.model.Journey;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
@@ -22,4 +24,6 @@ int countAllByReturnStation(String station);
 
     @Query(value = "select (b.returnStation) from Journey b where b.departureStation=:station group by b.returnStation order by count(*) limit 5")
     List<String> findByDepartureStationOrderByCountLimit5(String station);
+
+    Page<Journey> findAll(Pageable pageable);
 }

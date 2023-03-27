@@ -11,6 +11,7 @@ public class Station {
     @Id
     @Column(name = "fid")
     private int fid;
+
     @Column(name = "station_id")
     private int stationId;
     @Column(name = "station_name_fi")
@@ -218,24 +219,4 @@ public class Station {
     public void setAvgDistanceToStation(double avgDistanceToStation) {
         this.avgDistanceToStation = avgDistanceToStation;
     }
-
-//    public double getAvgDistanceFromStationString() {
-//        return avgDistanceFromStationString;
-//    }
-//
-//    public void setAvgDistanceFromStationString(double avgDistanceFromStationString) {
-//        this.avgDistanceFromStationString = avgDistanceFromStationString;
-//    }
-//
-//    public double getAvgDistanceToStationString() {
-//        return avgDistanceToStationString;
-//    }
-//
-//    public void setAvgDistanceToStationString(double avgDistanceToStationString) {
-//        this.avgDistanceToStationString = avgDistanceToStationString;
-//    }
-//
-//    public String formattedDistance(int distance) {
-//        return String.format("%.2f", distance);
-//    }
 }

@@ -1,0 +1,27 @@
+/*html{*/
+/*    background-image: url("https://getwallpapers.com/wallpaper/full/f/4/6/618812.jpg");*/
+/*}*/
+/*a {*/
+/*    color: inherit;;*/
+/*}*/
+/*tbody a {*/
+/*    text-decoration: underline dotted;*/
+/*    text-decoration-color: #fcbc19;*/
+/*    text-decoration-thickness: 0.2rem;*/
+/*    text-underline-offset: 0.3rem;*/
+/*}*/
+/*.navbar {*/
+/*    background-color: #fcbc19;*/
+/*    --bs-navbar-padding-y: 0rem;*/
+/*}*/
+/*.navbar .nav-link {*/
+/*    --bs-nav-link-font-size: 1.5rem;*/
+/*    --bs-nav-link-color: rgba(var(--bs-emphasis-color-rgb), 1);*/
+/*    --bs-navbar-nav-link-padding-x: 2rem;*/
+/*}*/
+/*.navbar .nav-bar-nav {*/
+/*}*/
+/*.navbar .btn {*/
+/*    --bs-btn-font-size: 1.5rem;*/
+/*    --bs-btn-border-width: 0rem;*/
+/*}*/

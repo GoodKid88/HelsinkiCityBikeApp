@@ -1,18 +1,31 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Helsinki City Bike</title>
-    <link href="/css/styles.css" rel="stylesheet">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Figtree&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
+    <link href="../static/css/styles.css" type="text/css" th:href="@{/css/styles.css}" rel="stylesheet" />
+    <link rel="icon" href="/images/CityBikes_logo.svg">
+    <title>Homepage</title>
 </head>
+<style>
+    .container{
+        background-image: url("https://getwallpapers.com/wallpaper/full/f/4/6/618812.jpg");
+    }
+</style>
 <body>
+<div th:replace="~{header :: header}"></div>
+<div class="container">
+    <div class="px-4 py-3 my-5 text-center">
+        <h1 class="display-1 fw-bold">Helsinki City Bikes</h1>
 
-<header>
-        <a href="journeys">Journeys</a>
-        <p>|</p><a href="stations">Stations</a>
-</header>
-
-<a href="/index/upload">Upload</a>
-
+        <a class="nav-link" th:href="@{/index/upload}">Upload
+        </a>
+    </div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
 </body>
 </html>

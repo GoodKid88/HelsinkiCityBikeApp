@@ -1,9 +1,12 @@
 package com.example.HelsinkiCityBikeApp.services;
 
 import com.example.HelsinkiCityBikeApp.model.Journey;
+import com.example.HelsinkiCityBikeApp.model.Station;
 import com.example.HelsinkiCityBikeApp.repositories.JourneyRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -20,8 +23,9 @@ public class JourneyService {
         this.journeyRepository = journeyRepository;
     }
 
-    public List<Journey> findAll() {
-        return journeyRepository.findAll(PageRequest.of(0, 30)).getContent();
+    public Page<Journey> getAllJourneysForView(Pageable pageable) {
+        Page<Journey> journeyPageable = this.journeyRepository.findAll(pageable);
+        return journeyPageable;
     }
 
     @Transactional

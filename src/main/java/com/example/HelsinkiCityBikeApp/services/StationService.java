@@ -4,11 +4,11 @@ import com.example.HelsinkiCityBikeApp.model.Station;
 import com.example.HelsinkiCityBikeApp.repositories.JourneyRepository;
 import com.example.HelsinkiCityBikeApp.repositories.StationRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -37,7 +37,12 @@ public class StationService {
         return foundStation.orElse(null);
     }
 
-    public List<Station> findAll() {
-        return stationRepository.findAll(PageRequest.of(0, 30)).getContent();
+//    public List<Station> findAll() {
+//        return stationRepository.findAll(PageRequest.of(0, 30)).getContent();
+//    }
+
+    public Page<Station> getAllStationsForView(Pageable pageable) {
+        Page<Station> stationsPageable = this.stationRepository.findAll(pageable);
+        return stationsPageable;
     }
 }
