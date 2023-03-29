@@ -1,7 +1,6 @@
 package com.example.HelsinkiCityBikeApp.controllers;
 
 import com.example.HelsinkiCityBikeApp.model.Station;
-import com.example.HelsinkiCityBikeApp.repositories.StationRepository;
 import com.example.HelsinkiCityBikeApp.services.StationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -19,12 +18,9 @@ import java.util.List;
 public class StationController {
     private final StationService stationService;
 
-    private final StationRepository stationRepository;
-
     @Autowired
-    public StationController(StationService stationService, StationRepository stationRepository) {
+    public StationController(StationService stationService) {
         this.stationService = stationService;
-        this.stationRepository = stationRepository;
     }
 
     @GetMapping("/show/{id}")

@@ -8,16 +8,18 @@
 </head>
 <body>
 <div th:replace="~{header :: header}"></div>
+
+
 <form th:method="POST" th:action="@{/journeys}" th:object="${journey}">
     <div class="form-group">
         <label for="departure">Enter departure: </label>
-        <input type="text" th:field="*{departure}" id="departure"/>
+        <input type="text" th:field="*{departure}" id="departure" placeholder="dd-mm-yyyy, 00:00"/>
         <div style="color:red" th:if="${#fields.hasErrors('departure')}" th:errors="*{departure}">Departure Error</div>
     </div>
     <br/>
     <div class="form-group">
         <label for="returnDate">Enter return: </label>
-        <input type="text" th:field="*{returnDate}" id="returnDate"/>
+        <input type="text" th:field="*{returnDate}" id="returnDate" placeholder="dd-mm-yyyy, 00:00"/>
         <div style="color:red" th:if="${#fields.hasErrors('returnDate')}" th:errors="*{returnDate}">Return Error</div>
     </div>
     <br/>
@@ -25,6 +27,7 @@
     <div class="form-group">
         <label for="departureStationId">Enter departure station Id: </label>
         <input type="text" th:field="*{departureStationId}" id="departureStationId"/>
+
         <div style="color:red" th:if="${#fields.hasErrors('departureStationId')}" th:errors="*{departureStationId}">
             Departure station Id Error
         </div>
