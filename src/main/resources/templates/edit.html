@@ -2,7 +2,7 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Add Journey</title>
+    <title>Update journey</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Figtree&display=swap" rel="stylesheet">
@@ -28,11 +28,8 @@
     <div class="form-group">
         <label for="departureStationId">Enter departure station Id: </label>
         <input type="text" th:field="*{departureStationId}" id="departureStationId"/>
-        <div style="color:red" th:if="${#fields.hasErrors('departureStationId')}" th:errors="*{departureStationId}">
-            Departure station Id Error
-        </div>
-    </div>
-    <br>
+        <div style="color:red" th:if="${#fields.hasErrors('departureStationId')}" th:errors="*{departureStationId}">Departure station Id Error</div>
+    </div><br>
     <div class="form-group">
         <label for="departureStation">Enter Departure Station: </label>
         <input type="text" th:field="*{departureStation}" id="departureStation"/>
@@ -45,11 +42,8 @@
     <div class="form-group">
         <label for="returnStationId">Enter return station Id: </label>
         <input type="text" th:field="*{returnStationId}" id="returnStationId"/>
-        <div style="color:red" th:if="${#fields.hasErrors('returnStationId')}" th:errors="*{returnStationId}">Return
-            station Id Error
-        </div>
-    </div>
-    <br>
+        <div style="color:red" th:if="${#fields.hasErrors('returnStationId')}" th:errors="*{returnStationId}">Return station Id Error</div>
+    </div><br>
     <div class="form-group">
         <label for="returnStation">Enter Return Station: </label>
         <input type="text" th:field="*{returnStation}" id="returnStation"/>

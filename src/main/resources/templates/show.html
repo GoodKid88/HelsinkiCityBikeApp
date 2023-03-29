@@ -2,18 +2,39 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Show</title>
+    <title>Show Station</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Figtree&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
+          crossorigin="anonymous">
 </head>
 <body>
+<div th:replace="~{header :: header}"></div>
 
-<p th:text="${'Station: ' + station.getStationNameEn() + ', Station Adress: ' + station.getAddressFI()}"/>
-<p th:text="${'Total number of journeys starting from the station: ' + station.getStartingFromStation()}"/>
-<p th:text="${'Total number of journeys ending at the station: ' + station.getEndingFromStation()}"/>
-<p th:text="${'The average distance of a journey starting from the station: ' + station.getAvgDistanceFromStation() + '(km)'}"/>
-<p th:text="${'The average distance of a journey ending to the station: ' + station.getAvgDistanceToStation() + '(km)'}"/>
-<p th:text="${'Top 5 most popular departure stations for journeys ending at the station: ' + station.getTop5returnStations()}"/>
-<p th:text="${'Top 5 most popular return stations for journeys starting from the station' + station.getTop5startStations()}"/>
-
-
+<ul class="list-group">
+    <li class="list-group-item"><p
+            th:text="${'Station: ' + station.getStationNameEn() + ', Station Adress: ' + station.getAddressFI()}"/></li>
+    <li class="list-group-item"><p
+            th:text="${'Total number of journeys starting from the station: ' + station.getStartingFromStation()}"/>
+    </li>
+    <li class="list-group-item"><p
+            th:text="${'Total number of journeys ending at the station: ' + station.getEndingFromStation()}"/></li>
+    <li class="list-group-item"><p
+            th:text="${'The average distance of a journey starting from the station: ' + station.getAvgDistanceFromStation() + '(km)'}"/>
+    </li>
+    <li class="list-group-item"><p
+            th:text="${'The average distance of a journey ending to the station: ' + station.getAvgDistanceToStation() + '(km)'}"/>
+    </li>
+    <li class="list-group-item"><p
+            th:text="${'Top 5 most popular departure stations for journeys ending at the station: ' + station.getTop5returnStations()}"/>
+    </li>
+    <li class="list-group-item"><p
+            th:text="${'Top 5 most popular return stations for journeys starting from the station: ' + station.getTop5startStations()}"/>
+    </li>
+</ul>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
+        crossorigin="anonymous">
+</script>
 </body>
 </html>

@@ -19,24 +19,18 @@ public class JourneyController {
     private final JourneyService journeyService;
 
     @Autowired
-    public JourneyController(JourneyService journeyService)  {
+    public JourneyController(JourneyService journeyService) {
         this.journeyService = journeyService;
     }
 
-//    @GetMapping()
-//    public String viewAllJourneys(Model model) {
-//        model.addAttribute("journeys", journeyService.findAll());
-//        return "/journeys";
-//    }
-
     @GetMapping()
     public String viewHomePage(Model model) {
-        return getAllJourneysPageable(1, model);
+        return getAll(1, model);
     }
 
     @GetMapping("/{page}")
-    public String getAllJourneysPageable(@PathVariable(value = "page") int page, Model model){
-        Page<Journey> journeysPageable = this.journeyService.getAllJourneysForView(PageRequest.of(page - 1, 15));
+    public String getAll(@PathVariable(value = "page") int page, Model model){
+        Page<Journey> journeysPageable = this.journeyService.findAll(PageRequest.of(page - 1, 15));
         List<Journey> journeys = journeysPageable.getContent();
         model.addAttribute("currentPage", page);
         model.addAttribute("totalPages", journeysPageable.getTotalPages());
@@ -45,8 +39,6 @@ public class JourneyController {
         model.addAttribute("module", "journeys");
         return "journeys";
     }
-
-
 
     @GetMapping("/new")
     public String newJourney(@ModelAttribute("journey") Journey journey) {
@@ -59,6 +51,28 @@ public class JourneyController {
         if (bindingResult.hasErrors())
             return "/new";
         journeyService.save(journey);
+        return "redirect:/journeys";
+    }
+
+    @GetMapping("/{id}/edit")
+    public String edit(Model model, @PathVariable("id") int id) {
+        model.addAttribute("journey", journeyService.findOne(id));
+        return "/edit";
+    }
+
+    @PatchMapping("/{id}")
+    public String update(@ModelAttribute("journey") @Valid Journey journey, BindingResult bindingResult,
+                         @PathVariable("id") int id) {
+        if (bindingResult.hasErrors())
+            return "/edit";
+        journeyService.delete(id);
+        journeyService.update(id, journey);
+        return "redirect:/journeys";
+    }
+
+    @DeleteMapping("/{id}")
+    public String delete(@PathVariable("id") int id) {
+        journeyService.delete(id);
         return "redirect:/journeys";
     }
 }

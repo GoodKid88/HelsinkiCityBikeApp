@@ -26,4 +26,5 @@ int countAllByReturnStation(String station);
     List<String> findByDepartureStationOrderByCountLimit5(String station);
 
     Page<Journey> findAll(Pageable pageable);
+
 }

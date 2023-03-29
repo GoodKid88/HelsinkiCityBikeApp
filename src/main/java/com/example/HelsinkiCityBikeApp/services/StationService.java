@@ -37,12 +37,7 @@ public class StationService {
         return foundStation.orElse(null);
     }
 
-//    public List<Station> findAll() {
-//        return stationRepository.findAll(PageRequest.of(0, 30)).getContent();
-//    }
-
     public Page<Station> getAllStationsForView(Pageable pageable) {
-        Page<Station> stationsPageable = this.stationRepository.findAll(pageable);
-        return stationsPageable;
+        return this.stationRepository.findAll(pageable);
     }
 }

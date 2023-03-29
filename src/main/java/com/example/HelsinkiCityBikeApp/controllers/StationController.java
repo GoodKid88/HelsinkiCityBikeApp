@@ -1,6 +1,7 @@
 package com.example.HelsinkiCityBikeApp.controllers;
 
 import com.example.HelsinkiCityBikeApp.model.Station;
+import com.example.HelsinkiCityBikeApp.repositories.StationRepository;
 import com.example.HelsinkiCityBikeApp.services.StationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -18,16 +19,13 @@ import java.util.List;
 public class StationController {
     private final StationService stationService;
 
-    @Autowired
-    public StationController(StationService stationService) {
-        this.stationService = stationService;
-    }
+    private final StationRepository stationRepository;
 
-//    @GetMapping()
-//    public String viewAllStations(Model model) {
-//        model.addAttribute("stations", stationService.findAll());
-//        return "/stations";
-//    }
+    @Autowired
+    public StationController(StationService stationService, StationRepository stationRepository) {
+        this.stationService = stationService;
+        this.stationRepository = stationRepository;
+    }
 
     @GetMapping("/show/{id}")
     public String show(@PathVariable("id") int id, Model model) {
@@ -38,10 +36,11 @@ public class StationController {
 
     @GetMapping()
     public String viewHomePage(Model model) {
-        return getAllStationsPageable(1, model);
+        return getAll(1, model);
     }
-        @GetMapping("/{page}")
-    public String getAllStationsPageable(@PathVariable(value = "page") int page, Model model){
+
+    @GetMapping("/{page}")
+    public String getAll(@PathVariable(value = "page") int page, Model model) {
         Page<Station> stationsPageable = this.stationService.getAllStationsForView(PageRequest.of(page - 1, 15));
         List<Station> stations = stationsPageable.getContent();
         model.addAttribute("currentPage", page);
