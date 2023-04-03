@@ -1,8 +1,3 @@
 FROM openjdk
-ADD out/artifacts/HelsinkiCityBikeApp_jar HelsinkiCityBikeApp.jar
-ENTRYPOINT ["java", "-jar", "HelsinkiCityBikeApp.jar"]
-
-#COPY . /src/main/java/ /tmp/
-#WORKDIR /tmp
-#RUN javac HelsinkiCityBikeAppApplication.java
-#CMD ["java", "HelsinkiCityBikeAppApplication"]
+ADD target/HelsinkiCityBikeApp-0.0.1-SNAPSHOT.jar HelsinkiCityBikeApp-0.0.1-SNAPSHOT.jar
+ENTRYPOINT ["java", "-jar", "/HelsinkiCityBikeApp-0.0.1-SNAPSHOT.jar"]
